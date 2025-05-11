@@ -3,16 +3,19 @@
 import Aboutus from "@/components/Aboutus";
 import Blog from "@/components/Blog";
 import MyContext from "@/components/MyContext";
+import { addTodo } from "@/features/todo/todoSlice";
 import { FormEvent, useState } from "react";
+import { useDispatch, UseDispatch } from "react-redux";
 
 export default function Home() {
     const [name, setName] = useState("");
-    const [names, setNames] = useState("");
-    const data = names;
+    // const [names, setNames] = useState("");
+    // const data = names;
+    const dispatch = useDispatch();
 
     function onSubmitt(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
-        setNames(name);
+        dispatch(addTodo(name));
     }
 
     return (
@@ -30,12 +33,12 @@ export default function Home() {
                 <button type="submit"> Submit</button>
             </form>
 
-            <div>
+            {/* <div>
                 <MyContext.Provider value={data}>
                     <Aboutus />
                     <Blog />
                 </MyContext.Provider>
-            </div>
+            </div> */}
         </>
     );
 }
